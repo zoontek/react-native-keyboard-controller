@@ -13,6 +13,7 @@ import styles from './styles';
 
 import type { StackScreenProps } from '@react-navigation/stack';
 import type { ExamplesStackParamList } from '../../../navigation/ExamplesStack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AnimatedTextInput = Reanimated.createAnimatedComponent(TextInput);
 
@@ -35,9 +36,11 @@ function ReanimatedChat({ navigation }: Props) {
 
   const { height: telegram } = useTelegramTransitions();
   const { height: platform } = useReanimatedKeyboardAnimation();
+  const { bottom: bottomInset } = useSafeAreaInsets();
+
   const height = useDerivedValue(
-    () => (isTGTransition ? telegram.value : platform.value),
-    [isTGTransition]
+    () => (isTGTransition ? telegram.value : platform.value) - bottomInset,
+    [isTGTransition, bottomInset]
   );
 
   const scrollViewStyle = useAnimatedStyle(
