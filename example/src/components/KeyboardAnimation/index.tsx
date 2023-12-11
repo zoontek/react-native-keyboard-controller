@@ -5,12 +5,10 @@ import {
   useKeyboardAnimationReplica,
 } from 'react-native-keyboard-controller';
 import styles from './styles';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function KeyboardAnimation() {
   const { height, progress } = useKeyboardAnimation();
   const { height: heightReplica } = useKeyboardAnimationReplica();
-  const { bottom: bottomInset } = useSafeAreaInsets();
 
   return (
     <View style={styles.container}>
@@ -49,9 +47,7 @@ export default function KeyboardAnimation() {
               height: 50,
               backgroundColor: 'red',
               borderRadius: 25,
-              transform: [
-                { translateY: Animated.subtract(height, bottomInset) },
-              ],
+              transform: [{ translateY: height }],
             }}
           />
           <Animated.View
@@ -60,9 +56,7 @@ export default function KeyboardAnimation() {
               height: 50,
               backgroundColor: 'blue',
               borderRadius: 25,
-              transform: [
-                { translateY: Animated.subtract(heightReplica, bottomInset) },
-              ],
+              transform: [{ translateY: heightReplica }],
             }}
           />
         </View>
