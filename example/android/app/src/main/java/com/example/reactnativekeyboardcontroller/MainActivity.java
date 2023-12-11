@@ -1,19 +1,13 @@
 package com.example.reactnativekeyboardcontroller;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.reactnativekeyboardcontroller.KeyboardController;
+import com.reactnativekeyboardcontroller.modules.KeyboardControllerModuleImpl;
 
 public class MainActivity extends ReactActivity {
   /**
@@ -42,45 +36,6 @@ public class MainActivity extends ReactActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(null);
-
-    // set up the edge-to-edge display
-    final boolean darkContentBars = true;
-    final Window window = getWindow();
-    final View view = window.getDecorView();
-
-    final WindowInsetsControllerCompat insetsController =
-      new WindowInsetsControllerCompat(window, view);
-
-    WindowCompat.setDecorFitsSystemWindows(window, false);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-      window.clearFlags(
-        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS |
-          WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-      );
-
-      window.setStatusBarColor(Color.TRANSPARENT);
-      window.setNavigationBarColor(Color.TRANSPARENT);
-
-      insetsController.setAppearanceLightStatusBars(darkContentBars);
-      insetsController.setAppearanceLightNavigationBars(darkContentBars);
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        window.setStatusBarContrastEnforced(false);
-        window.setNavigationBarContrastEnforced(false);
-      }
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-      window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-      window.setStatusBarColor(Color.TRANSPARENT);
-
-      insetsController.setAppearanceLightStatusBars(darkContentBars);
-    } else {
-      window.addFlags(
-        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS |
-          WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-      );
-    }
+    KeyboardController.init(this, "dark-content");
   }
 }
