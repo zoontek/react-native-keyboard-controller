@@ -29,7 +29,6 @@ private val TAG = KeyboardAnimationCallback::class.qualifiedName
 
 class KeyboardAnimationCallback(
   val view: ReactViewGroup,
-  val persistentInsetTypes: Int,
   val deferredInsetTypes: Int,
   dispatchMode: Int = DISPATCH_MODE_STOP,
   val context: ThemedReactContext?,
@@ -88,11 +87,6 @@ class KeyboardAnimationCallback(
   private var layoutObserver: FocusedInputObserver? = null
 
   init {
-    require(persistentInsetTypes and deferredInsetTypes == 0) {
-      "persistentInsetTypes and deferredInsetTypes can not contain any of " +
-        " same WindowInsetsCompat.Type values"
-    }
-
     layoutObserver = FocusedInputObserver(view = view, context = context)
     view.viewTreeObserver.addOnGlobalFocusChangeListener(focusListener)
   }
@@ -189,10 +183,8 @@ class KeyboardAnimationCallback(
     // ignore non-keyboard animation
     runningAnimations.find { it.isKeyboardAnimation } ?: return insets
 
-    // First we get the insets which are potentially deferred
+    // We get the insets which are potentially deferred
     val typesInset = insets.getInsets(deferredInsetTypes)
-    // Then we get the persistent inset types which are applied as padding during layout
-    val otherInset = insets.getInsets(persistentInsetTypes) // TODO: Cleanup mentions of WindowInsetsCompat.Type.systemBars()
 
     // We coerce the insets to be >= 0, to make sure we don't use negative insets.
     val diff = Insets.max(typesInset, Insets.NONE)
