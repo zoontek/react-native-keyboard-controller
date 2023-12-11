@@ -61,8 +61,6 @@ export type KeyboardControllerProps = {
     e: NativeSyntheticEvent<EventWithName<FocusedInputTextChangedEvent>>
   ) => void;
   // props
-  statusBarTranslucent?: boolean;
-  navigationBarTranslucent?: boolean;
   enabled?: boolean;
 } & ViewProps;
 

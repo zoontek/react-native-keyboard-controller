@@ -7,12 +7,12 @@ import {
 import { render } from '@testing-library/react-native';
 
 function KeyboardControllerViewTest() {
-  return <KeyboardControllerView statusBarTranslucent />;
+  return <KeyboardControllerView />;
 }
 
 function KeyboardProviderTest() {
   return (
-    <KeyboardProvider statusBarTranslucent>
+    <KeyboardProvider>
       <View style={{ width: 20, height: 20, backgroundColor: 'black' }} />
     </KeyboardProvider>
   );
