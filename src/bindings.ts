@@ -1,7 +1,6 @@
 import { View } from 'react-native';
 
 import type {
-  KeyboardControllerModule,
   KeyboardControllerProps,
   KeyboardEventsModule,
   KeyboardGestureAreaProps,
@@ -9,10 +8,6 @@ import type {
 import type { EmitterSubscription } from 'react-native';
 
 const NOOP = () => {};
-export const KeyboardController: KeyboardControllerModule = {
-  addListener: NOOP,
-  removeListeners: NOOP,
-};
 export const KeyboardEvents: KeyboardEventsModule = {
   addListener: () => ({ remove: NOOP } as EmitterSubscription),
 };
