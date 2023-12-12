@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { TextInput } from 'react-native-gesture-handler';
-import {
-  KeyboardEvents,
-  useResizeMode,
-} from 'react-native-keyboard-controller';
+import { KeyboardEvents } from 'react-native-keyboard-controller';
 
 const styles = StyleSheet.create({
   input: {
@@ -16,8 +13,6 @@ const styles = StyleSheet.create({
 });
 
 function EventsListener() {
-  useResizeMode();
-
   useEffect(() => {
     const show = KeyboardEvents.addListener('keyboardWillShow', (e) => {
       const delay = new Date().getTime() - e.timestamp;
