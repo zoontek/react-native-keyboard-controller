@@ -8,8 +8,6 @@ import {
   withSpring,
 } from 'react-native-reanimated';
 
-import { KeyboardController } from './bindings';
-import { AndroidSoftInputModes } from './constants';
 import { useReanimatedKeyboardAnimation } from './hooks';
 
 const availableOSEventType = Platform.OS === 'ios' ? 'Will' : 'Did';
@@ -40,13 +38,6 @@ export const useKeyboardAnimationReplica = (): KeyboardAnimation => {
     []
   );
 
-  useEffect(() => {
-    KeyboardController.setInputMode(
-      AndroidSoftInputModes.SOFT_INPUT_ADJUST_RESIZE
-    );
-
-    return () => KeyboardController.setDefaultMode();
-  }, []);
   useEffect(() => {
     const listener = Keyboard.addListener(
       `keyboard${availableOSEventType}Show`,

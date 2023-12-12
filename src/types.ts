@@ -80,9 +80,6 @@ export type KeyboardGestureAreaProps = {
 } & ViewProps;
 
 export type KeyboardControllerModule = {
-  // android only
-  setDefaultMode: () => void;
-  setInputMode: (mode: number) => void;
   // native event module stuff
   addListener: (eventName: string) => void;
   removeListeners: (count: number) => void;

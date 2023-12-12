@@ -6,19 +6,7 @@ import com.facebook.react.bridge.ReactMethod
 import com.reactnativekeyboardcontroller.modules.KeyboardControllerModuleImpl
 
 class KeyboardControllerModule(mReactContext: ReactApplicationContext) : ReactContextBaseJavaModule(mReactContext) {
-  private val module = KeyboardControllerModuleImpl(mReactContext)
-
   override fun getName(): String = KeyboardControllerModuleImpl.NAME
-
-  @ReactMethod
-  fun setInputMode(mode: Int) {
-    module.setInputMode(mode)
-  }
-
-  @ReactMethod
-  fun setDefaultMode() {
-    module.setDefaultMode()
-  }
 
   @Suppress("detekt:UnusedParameter")
   @ReactMethod
