@@ -184,8 +184,8 @@ export const KeyboardProvider = ({
         onKeyboardMoveStart={Platform.OS === 'ios' ? onKeyboardMove : undefined}
         onKeyboardMove={Platform.OS === 'android' ? onKeyboardMove : undefined}
         onKeyboardMoveInteractive={onKeyboardMove}
-        onFocusedInputTextChangedReanimated={inputTextHandler}
         onFocusedInputLayoutChangedReanimated={inputLayoutHandler}
+        onFocusedInputTextChangedReanimated={inputTextHandler}
         style={styles.container}
       >
         {children}
